@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "shop_orders",
+  "info": { "displayName": "ShopOrder" },
+  "options": { "draftAndPublish": false },
+  "attributes": {
+    "orderState": { "type": "enumeration", "enum": ["pending","paid","shipped","finished","cancelled"], "default": "pending" },
+    "quantity": { "type": "integer", "required": true },
+    "totalPriceUSDT": { "type": "decimal", "precision": 20, "scale": 2 },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "product": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::store-product.store-product"
+    },
+    "walletTx": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::wallet-tx.wallet-tx"
+    },
+    "paidAt": { "type": "datetime" }
+  }
+} 

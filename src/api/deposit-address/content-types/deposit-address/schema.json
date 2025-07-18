@@ -1,0 +1,15 @@
+{
+  "kind": "collectionType",
+  "collectionName": "deposit_addresses",
+  "info": { "displayName": "DepositAddress" },
+  "options": { "draftAndPublish": false },
+  "attributes": {
+    "address": { "type": "string", "unique": true, "required": true },
+    "chain": { "type": "enumeration", "enum": ["BSC"], "required": true },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+} 

@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "referral_rewards",
+  "info": { "displayName": "ReferralReward" },
+  "options": { "draftAndPublish": false },
+  "attributes": {
+    "amountUSDT": { "type": "decimal", "precision": 20, "scale": 2 },
+    "fromOrder": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::subscription-order.subscription-order"
+    },
+    "referrer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "inviteRewards"
+    }
+  }
+} 

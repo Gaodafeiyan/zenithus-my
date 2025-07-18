@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "lottery_spins",
+  "info": { "displayName": "LotterySpin" },
+  "options": { "draftAndPublish": false },
+  "attributes": {
+    "result": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::lottery-prize.lottery-prize"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "spentUSDT": { "type": "decimal", "precision": 20, "scale": 2 }
+  }
+} 

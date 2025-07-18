@@ -1,0 +1,12 @@
+{
+  "kind": "collectionType",
+  "collectionName": "banners",
+  "info": { "displayName": "Banner" },
+  "options": { "draftAndPublish": false },
+  "attributes": {
+    "title":  { "type": "string" },
+    "image":  { "type": "media", "multiple": false, "required": true },
+    "link":   { "type": "string" },
+    "sortIdx":{ "type": "integer", "default": 0 }
+  }
+} 

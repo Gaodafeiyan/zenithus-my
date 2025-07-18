@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "up_users",
+  "info": { "singularName": "user", "pluralName": "users", "displayName": "User" },
+  "options": { "draftAndPublish": false },
+  "pluginOptions": {},
+  "attributes": {
+    "diamondId":   { "type": "uid", "unique": true, "required": true },
+    "referralCode":{ "type": "uid", "unique": true, "required": true },
+    "invitedBy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "invitees"
+    },
+    "invitees": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "invitedBy"
+    },
+    "wallet_balance": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::wallet-balance.wallet-balance",
+      "mappedBy": "user"
+    },
+    "wallet_tx": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::wallet-tx.wallet-tx",
+      "mappedBy": "user"
+    }
+  }
+} 

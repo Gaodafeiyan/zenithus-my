@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subscription_plans",
+  "info": { "displayName": "SubscriptionPlan" },
+  "options": { "draftAndPublish": false },
+  "attributes": {
+    "title":  { "type": "string" },
+    "priceUSDT": { "type": "decimal", "precision": 20, "scale": 2 },
+    "cycleDays": { "type": "integer" },
+    "staticYieldPct": { "type": "decimal", "precision": 5, "scale": 2 },
+    "aiTokenBonusPct":{ "type": "decimal", "precision": 5, "scale": 2 },
+    "maxPurchaseCnt": { "type": "integer" },
+    "unlockAfterCnt": { "type": "integer" },
+    "orders": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::subscription-order.subscription-order",
+      "mappedBy": "subscription_plan"
+    }
+  }
+} 

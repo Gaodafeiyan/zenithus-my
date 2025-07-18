@@ -1,0 +1,12 @@
+{
+  "kind": "collectionType",
+  "collectionName": "token_assets",
+  "info": { "displayName": "TokenAsset" },
+  "options": { "draftAndPublish": false },
+  "attributes": {
+    "symbol":  { "type": "string", "unique": true, "required": true },
+    "chain":   { "type": "enumeration", "enum": ["BSC"] },
+    "contract":{ "type": "string", "required": true },
+    "decimals":{ "type": "integer", "default": 18 }
+  }
+} 

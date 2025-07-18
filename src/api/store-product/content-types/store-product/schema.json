@@ -1,0 +1,15 @@
+{
+  "kind": "collectionType",
+  "collectionName": "store_products",
+  "info": { "displayName": "StoreProduct" },
+  "options": { "draftAndPublish": false },
+  "attributes": {
+    "title": { "type": "string", "required": true },
+    "sku":   { "type": "uid", "targetField": "title" },
+    "priceUSDT": { "type": "decimal", "precision": 20, "scale": 2 },
+    "stockQty": { "type": "integer", "default": -1 },
+    "cover": { "type": "media" },
+    "gallery": { "type": "media", "multiple": true },
+    "description": { "type": "richtext" }
+  }
+} 

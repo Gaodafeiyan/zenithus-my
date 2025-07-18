@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subscription_orders",
+  "info": { "displayName": "SubscriptionOrder" },
+  "options": { "draftAndPublish": false },
+  "attributes": {
+    "orderState": { "type": "enumeration", "enum": ["pending","active","finished"], "default": "active" },
+    "startAt":    { "type": "datetime" },
+    "endAt":      { "type": "datetime" },
+    "principalUSDT": { "type": "decimal", "precision": 20, "scale": 2 },
+    "staticYieldUSDT": { "type": "decimal", "precision": 20, "scale": 2 },
+    "aiTokenQty": { "type": "decimal", "precision": 38, "scale": 8 },
+    "redeemedAt": { "type": "datetime" },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "subscription_orders"
+    },
+    "subscription_plan": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::subscription-plan.subscription-plan",
+      "inversedBy": "orders"
+    }
+  }
+} 
