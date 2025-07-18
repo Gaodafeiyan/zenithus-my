@@ -1,19 +1,32 @@
 'use strict';
 
 module.exports = (plugin) => {
-  // 保留原始 service
-  const { find, count } = plugin.services.role;
+  const { find, count } = plugin.controllers.role;
 
-  // 去掉无效的 level 过滤
-  const sanitize = (params = {}) => {
-    if (params.where && params.where.level) {
-      delete params.where.level;               // 关键行
+  // 閫掑綊鍒犻櫎瀵硅薄涓殑 level 瀛楁
+  const deepStripLevel = (obj) => {
+    if (typeof obj !== 'object' || obj === null) return;
+    if ('level' in obj) delete obj.level;
+    for (const key in obj) {
+      if (typeof obj[key] === 'object') deepStripLevel(obj[key]);
     }
-    return params;
   };
 
-  plugin.services.role.find = (params) => find(sanitize(params));
-  plugin.services.role.count = (params) => count(sanitize(params));
+  const stripLevel = (ctx) => {
+    if (ctx.query?.filters) {
+      deepStripLevel(ctx.query.filters);
+    }
+  };
+
+  plugin.controllers.role.find = async (ctx) => {
+    stripLevel(ctx);
+    return find(ctx);
+  };
+
+  plugin.controllers.role.count = async (ctx) => {
+    stripLevel(ctx);
+    return count(ctx);
+  };
 
   return plugin;
 };
