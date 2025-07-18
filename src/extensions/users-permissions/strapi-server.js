@@ -1,19 +1,24 @@
 'use strict';
 
 module.exports = (plugin) => {
-  // ±£ÁôÔ­Ê¼ service
-  const { find, count } = plugin.services.role;
+  // --- æŠŠåŸæ§åˆ¶å™¨æš‚å­˜èµ·æ¥ -----------------
+  const { find, count } = plugin.controllers.role;
 
-  // È¥µôÎŞĞ§µÄ level ¹ıÂË
-  const sanitize = (params = {}) => {
-    if (params.where && params.where.level) {
-      delete params.where.level;               // ¹Ø¼üĞĞ
-    }
-    return params;
+  // --- è¿‡æ»¤å™¨ï¼šæŠŠ filters.level æ•´å—æ‰”æ‰ ---
+  const stripLevel = (ctx) => {
+    if (ctx.query?.filters?.level) delete ctx.query.filters.level;
   };
 
-  plugin.services.role.find = (params) => find(sanitize(params));
-  plugin.services.role.count = (params) => count(sanitize(params));
+  // --- é‡å†™ find / count -------------------
+  plugin.controllers.role.find = async (ctx) => {
+    stripLevel(ctx);
+    return find(ctx);
+  };
+
+  plugin.controllers.role.count = async (ctx) => {
+    stripLevel(ctx);
+    return count(ctx);
+  };
 
   return plugin;
 };
