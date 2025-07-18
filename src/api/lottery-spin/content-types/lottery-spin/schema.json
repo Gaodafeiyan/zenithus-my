@@ -1,7 +1,11 @@
 {
   "kind": "collectionType",
   "collectionName": "lottery_spins",
-  "info": { "displayName": "LotterySpin" },
+  "info": { 
+    "singularName": "lottery-spin",
+    "pluralName": "lottery-spins",
+    "displayName": "LotterySpin" 
+  },
   "options": { "draftAndPublish": false },
   "attributes": {
     "result": {

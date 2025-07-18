@@ -1,7 +1,11 @@
 {
   "kind": "collectionType",
   "collectionName": "store_products",
-  "info": { "displayName": "StoreProduct" },
+  "info": { 
+    "singularName": "store-product",
+    "pluralName": "store-products",
+    "displayName": "StoreProduct" 
+  },
   "options": { "draftAndPublish": false },
   "attributes": {
     "title": { "type": "string", "required": true },

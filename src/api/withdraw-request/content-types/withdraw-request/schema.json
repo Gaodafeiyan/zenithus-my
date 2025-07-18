@@ -1,7 +1,11 @@
 {
   "kind": "collectionType",
   "collectionName": "withdraw_requests",
-  "info": { "displayName": "WithdrawRequest" },
+  "info": { 
+    "singularName": "withdraw-request",
+    "pluralName": "withdraw-requests",
+    "displayName": "WithdrawRequest" 
+  },
   "options": { "draftAndPublish": false },
   "attributes": {
     "toAddress":   { "type": "string", "required": true },

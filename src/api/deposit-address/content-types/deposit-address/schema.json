@@ -1,7 +1,11 @@
 {
   "kind": "collectionType",
   "collectionName": "deposit_addresses",
-  "info": { "displayName": "DepositAddress" },
+  "info": { 
+    "singularName": "deposit-address",
+    "pluralName": "deposit-addresses",
+    "displayName": "DepositAddress" 
+  },
   "options": { "draftAndPublish": false },
   "attributes": {
     "address": { "type": "string", "unique": true, "required": true },

@@ -1,7 +1,11 @@
 {
   "kind": "collectionType",
   "collectionName": "token_prices",
-  "info": { "displayName": "TokenPrice" },
+  "info": { 
+    "singularName": "token-price",
+    "pluralName": "token-prices",
+    "displayName": "TokenPrice" 
+  },
   "options": { "draftAndPublish": false },
   "attributes": {
     "asset": {

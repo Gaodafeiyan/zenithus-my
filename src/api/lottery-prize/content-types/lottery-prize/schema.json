@@ -1,7 +1,11 @@
 {
   "kind": "collectionType",
   "collectionName": "lottery_prizes",
-  "info": { "displayName": "LotteryPrize" },
+  "info": { 
+    "singularName": "lottery-prize",
+    "pluralName": "lottery-prizes",
+    "displayName": "LotteryPrize" 
+  },
   "options": { "draftAndPublish": false },
   "attributes": {
     "title": { "type": "string" },

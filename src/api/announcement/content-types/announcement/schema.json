@@ -1,7 +1,11 @@
 {
   "kind": "collectionType",
   "collectionName": "announcements",
-  "info": { "displayName": "Announcement" },
+  "info": { 
+    "singularName": "announcement",
+    "pluralName": "announcements",
+    "displayName": "Announcement" 
+  },
   "options": { "draftAndPublish": false },
   "attributes": {
     "title": { "type": "string", "required": true },

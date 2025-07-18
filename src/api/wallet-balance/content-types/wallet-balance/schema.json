@@ -1,7 +1,11 @@
 {
   "kind": "collectionType",
   "collectionName": "wallet_balances",
-  "info": { "displayName": "WalletBalance" },
+  "info": { 
+    "singularName": "wallet-balance",
+    "pluralName": "wallet-balances",
+    "displayName": "WalletBalance" 
+  },
   "options": { "draftAndPublish": false },
   "attributes": {
     "amount": { "type": "decimal", "precision": 38, "scale": 8, "default": 0 },

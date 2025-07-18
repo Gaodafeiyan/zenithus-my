@@ -1,7 +1,11 @@
 {
   "kind": "collectionType",
   "collectionName": "subscription_orders",
-  "info": { "displayName": "SubscriptionOrder" },
+  "info": { 
+    "singularName": "subscription-order",
+    "pluralName": "subscription-orders",
+    "displayName": "SubscriptionOrder" 
+  },
   "options": { "draftAndPublish": false },
   "attributes": {
     "orderState": { "type": "enumeration", "enum": ["pending","active","finished"], "default": "active" },

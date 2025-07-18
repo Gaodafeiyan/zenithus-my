@@ -1,7 +1,11 @@
 {
   "kind": "collectionType",
   "collectionName": "shop_orders",
-  "info": { "displayName": "ShopOrder" },
+  "info": { 
+    "singularName": "shop-order",
+    "pluralName": "shop-orders",
+    "displayName": "ShopOrder" 
+  },
   "options": { "draftAndPublish": false },
   "attributes": {
     "orderState": { "type": "enumeration", "enum": ["pending","paid","shipped","finished","cancelled"], "default": "pending" },

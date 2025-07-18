@@ -1,7 +1,11 @@
 {
   "kind": "collectionType",
   "collectionName": "banners",
-  "info": { "displayName": "Banner" },
+  "info": { 
+    "singularName": "banner",
+    "pluralName": "banners",
+    "displayName": "Banner" 
+  },
   "options": { "draftAndPublish": false },
   "attributes": {
     "title":  { "type": "string" },

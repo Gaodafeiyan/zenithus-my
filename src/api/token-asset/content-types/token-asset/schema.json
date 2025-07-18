@@ -1,7 +1,11 @@
 {
   "kind": "collectionType",
   "collectionName": "token_assets",
-  "info": { "displayName": "TokenAsset" },
+  "info": { 
+    "singularName": "token-asset",
+    "pluralName": "token-assets",
+    "displayName": "TokenAsset" 
+  },
   "options": { "draftAndPublish": false },
   "attributes": {
     "symbol":  { "type": "string", "unique": true, "required": true },
