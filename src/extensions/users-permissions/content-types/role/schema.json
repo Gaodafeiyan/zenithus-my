@@ -27,6 +27,10 @@
       "required": true,
       "unique": true
     },
+    "level": {
+      "type": "integer",
+      "default": 0
+    },
     "permissions": {
       "type": "relation",
       "relation": "oneToMany",
