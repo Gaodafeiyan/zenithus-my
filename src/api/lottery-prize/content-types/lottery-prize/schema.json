@@ -7,6 +7,12 @@
     "title": { "type": "string" },
     "probabilityWeight": { "type": "integer", "required": true },
     "stockQty": { "type": "integer", "default": -1 },
-    "image": { "type": "media" }
+    "image": { "type": "media" },
+    "spins": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::lottery-spin.lottery-spin",
+      "mappedBy": "result"
+    }
   }
 } 

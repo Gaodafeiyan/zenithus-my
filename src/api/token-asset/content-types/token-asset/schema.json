@@ -7,6 +7,12 @@
     "symbol":  { "type": "string", "unique": true, "required": true },
     "chain":   { "type": "enumeration", "enum": ["BSC"] },
     "contract":{ "type": "string", "required": true },
-    "decimals":{ "type": "integer", "default": 18 }
+    "decimals":{ "type": "integer", "default": 18 },
+    "prices": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::token-price.token-price",
+      "mappedBy": "asset"
+    }
   }
 } 

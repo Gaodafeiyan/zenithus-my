@@ -30,6 +30,24 @@
       "relation": "oneToMany",
       "target": "api::wallet-tx.wallet-tx",
       "mappedBy": "user"
+    },
+    "subscription_orders": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::subscription-order.subscription-order",
+      "mappedBy": "user"
+    },
+    "inviteRewards": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::referral-reward.referral-reward",
+      "mappedBy": "referrer"
+    },
+    "deposit_address": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::deposit-address.deposit-address",
+      "mappedBy": "user"
     }
   }
 } 
