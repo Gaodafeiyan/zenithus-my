@@ -8,7 +8,7 @@ module.exports = ({ env }) => ({
       port: env.int('DB_PORT', 5432),
       database: env('DB_NAME', 'zenithus'),
       user: env('DB_USER', 'postgres'),
-      password: env('DB_PASSWORD', 'yourStrongPassword'),
+      password: env('DB_PASSWORD', '521125'),
       ssl: env.bool('DB_SSL', false),
     },
     pool: { min: 2, max: 10 },
