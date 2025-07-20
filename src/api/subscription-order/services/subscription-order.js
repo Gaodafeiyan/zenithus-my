@@ -39,7 +39,9 @@ module.exports = () => ({
     await strapi.service('api::wallet-balance.wallet-balance').add(user.id, staticYield + Number(principalUSDT), 0);
 
     // 2) 生成邀请返佣
-    const inviter = await strapi.db.query('plugin::users-permissions.user').findOne({ where: { id: user.invitedBy } });
+    const inviter = await strapi.db.query('plugin::users-permissions.user').findOne({ 
+      where: { id: { $eq: user.invitedBy } } 
+    });
     if (inviter) {
       const reward = staticYield * (Number(plan.referralPct) / 100);
       await strapi.service('api::wallet-balance.wallet-balance').add(inviter.id, reward, 0);
@@ -59,10 +61,10 @@ module.exports = () => ({
   async _checkLimit(userId, plan) {
     // 累计完成的次数
     const finishedCount = await strapi.db.query('api::subscription-order.subscription-order')
-      .count({ where: { user: userId, plan: plan.id, orderState: 'finished' } });
+      .count({ where: { user: { $eq: userId }, plan: { $eq: plan.id }, orderState: { $eq: 'finished' } } });
 
     const activeCount = await strapi.db.query('api::subscription-order.subscription-order')
-      .count({ where: { user: userId, plan: plan.id, orderState: 'active' } });
+      .count({ where: { user: { $eq: userId }, plan: { $eq: plan.id }, orderState: { $eq: 'active' } } });
 
     if (finishedCount + activeCount >= plan.maxPurchaseCnt) {
       throw new Error('Purchase limit reached');
@@ -71,12 +73,14 @@ module.exports = () => ({
     // 解锁检查
     if (plan.unlockAfterCnt) {
       const prevPlan = await strapi.db.query('api::subscription-plan.subscription-plan')
-        .findOne({ where: { unlockAfterCnt: plan.unlockAfterCnt - 1 } });
+        .findOne({ where: { unlockAfterCnt: { $eq: plan.unlockAfterCnt - 1 } } });
 
-      const prevFinished = await strapi.db.query('api::subscription-order.subscription-order')
-        .count({ where: { user: userId, plan: prevPlan.id, orderState: 'finished' } });
+      if (prevPlan) {
+        const prevFinished = await strapi.db.query('api::subscription-order.subscription-order')
+          .count({ where: { user: { $eq: userId }, plan: { $eq: prevPlan.id }, orderState: { $eq: 'finished' } } });
 
-      if (prevFinished < plan.unlockAfterCnt) throw new Error('Not unlocked yet');
+        if (prevFinished < plan.unlockAfterCnt) throw new Error('Not unlocked yet');
+      }
     }
   },
 }); 

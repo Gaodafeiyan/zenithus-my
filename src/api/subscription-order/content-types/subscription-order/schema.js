@@ -10,8 +10,8 @@ module.exports = {
     endAt: { type: 'datetime', required: true },
     staticYieldUSDT: { type: 'decimal', default: 0, scale: 2 },
     aiTokenQty: { type: 'decimal', default: 0, scale: 2 },
-    plan: { type: 'relation', relation: 'manyToOne', target: 'api::subscription-plan.subscription-plan' },
-    user: { type: 'relation', relation: 'manyToOne', target: 'plugin::users-permissions.user' },
-    referralReward: { type: 'relation', relation: 'oneToOne', target: 'api::referral-reward.referral-reward' },
+    plan: { type: 'relation', relation: 'manyToOne', target: 'api::subscription-plan.subscription-plan', inversedBy: 'subscription_orders' },
+    user: { type: 'relation', relation: 'manyToOne', target: 'plugin::users-permissions.user', inversedBy: 'subscriptionOrders' },
+    referralReward: { type: 'relation', relation: 'oneToOne', target: 'api::referral-reward.referral-reward', inversedBy: 'fromOrder' },
   },
 }; 

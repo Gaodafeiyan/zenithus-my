@@ -8,7 +8,7 @@ module.exports = () => ({
 
     // 查找邀请人
     const inviter = await strapi.db.query('plugin::users-permissions.user')
-      .findOne({ where: { referralCode: inviteCode } });
+      .findOne({ where: { referralCode: { $eq: inviteCode } } });
 
     if (!inviter) return ctx.badRequest('Invalid inviteCode');
 
