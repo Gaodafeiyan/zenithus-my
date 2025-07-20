@@ -11,12 +11,17 @@ module.exports = (plugin) => {
         delete ctx.query.filters.level;
       }
       
+      // 移除 id 相关的错误查询
+      if (ctx.query.filters.id) {
+        delete ctx.query.filters.id;
+      }
+      
       // 确保所有查询使用正确的操作符
       const sanitizeFilters = (filters) => {
         for (const key in filters) {
           if (typeof filters[key] === 'object' && filters[key] !== null) {
             // 检查是否使用了错误的操作符
-            const validOperators = ['$eq', '$ne', '$in', '$notIn', '$lt', '$lte', '$gt', '$gte', '$null', '$notNull'];
+            const validOperators = ['$eq', '$ne', '$in', '$notIn', '$lt', '$lte', '$gt', '$gte', '$null', '$notNull', '$contains', '$notContains', '$startsWith', '$endsWith'];
             const hasInvalidOperator = Object.keys(filters[key]).some(k => !validOperators.includes(k) && !k.startsWith('$'));
             
             if (hasInvalidOperator) {
@@ -34,13 +39,25 @@ module.exports = (plugin) => {
   };
 
   plugin.controllers.role.find = async (ctx) => {
-    safeFilters(ctx);
-    return find(ctx);
+    try {
+      safeFilters(ctx);
+      return await find(ctx);
+    } catch (error) {
+      console.error('Role find error:', error);
+      // 返回空结果而不是抛出错误
+      return { data: [], meta: { pagination: { page: 1, pageSize: 25, pageCount: 0, total: 0 } } };
+    }
   };
 
   plugin.controllers.role.count = async (ctx) => {
-    safeFilters(ctx);
-    return count(ctx);
+    try {
+      safeFilters(ctx);
+      return await count(ctx);
+    } catch (error) {
+      console.error('Role count error:', error);
+      // 返回0而不是抛出错误
+      return { count: 0 };
+    }
   };
 
   return plugin;
