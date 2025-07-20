@@ -1,6 +1,6 @@
-import { factories } from '@strapi/strapi';
+const { factories } = require('@strapi/strapi');
 
-export default factories.createCoreController('api::subscription-plan.subscription-plan', ({ strapi }) => ({
+module.exports = factories.createCoreController('api::subscription-plan.subscription-plan', ({ strapi }) => ({
   
   /** GET /api/subscription-plans/enabled */
   async enabled(ctx) {

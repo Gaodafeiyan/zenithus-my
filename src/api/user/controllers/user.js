@@ -1,6 +1,6 @@
-import { factories } from '@strapi/strapi';
+const { factories } = require('@strapi/strapi');
 
-export default factories.createCoreController('plugin::users-permissions.user', ({ strapi }) => ({
+module.exports = factories.createCoreController('plugin::users-permissions.user', ({ strapi }) => ({
   
   /** GET /api/users/profile */
   async profile(ctx) {

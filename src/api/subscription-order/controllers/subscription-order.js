@@ -1,6 +1,6 @@
-import { factories } from '@strapi/strapi';
+const { factories } = require('@strapi/strapi');
 
-export default factories.createCoreController('api::subscription-order.subscription-order', ({ strapi }) => ({
+module.exports = factories.createCoreController('api::subscription-order.subscription-order', ({ strapi }) => ({
   
   /** POST /api/subscription-orders/create */
   async create(ctx) {

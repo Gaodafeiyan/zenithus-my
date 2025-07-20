@@ -1,6 +1,4 @@
-import type { Schema } from '@strapi/strapi';
-
-const WalletSchema: Schema = {
+const WalletSchema = {
   info: { singularName: 'wallet-balance', pluralName: 'wallet-balances', displayName: '钱包余额' },
   options: { draftAndPublish: false },
   attributes: {
@@ -9,4 +7,4 @@ const WalletSchema: Schema = {
     user        : { type: 'relation', relation: 'oneToOne', target: 'plugin::users-permissions.user', inversedBy: 'wallet' },
   },
 };
-export default WalletSchema; 
+module.exports = WalletSchema; 

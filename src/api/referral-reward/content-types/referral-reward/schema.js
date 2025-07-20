@@ -1,6 +1,4 @@
-import type { Schema } from '@strapi/strapi';
-
-const RewardSchema: Schema = {
+const RewardSchema = {
   info: { singularName: 'referral-reward', pluralName: 'referral-rewards', displayName: '邀请返佣' },
   options: { draftAndPublish: false },
   attributes: {
@@ -10,4 +8,4 @@ const RewardSchema: Schema = {
     fromOrder:   { type: 'relation', relation: 'oneToOne',  target: 'api::subscription-order.subscription-order', inversedBy: 'referralReward' },
   },
 };
-export default RewardSchema; 
+module.exports = RewardSchema; 

@@ -1,6 +1,4 @@
-import type { Schema } from '@strapi/strapi';
-
-const PlanSchema: Schema = {
+const PlanSchema = {
   info: { singularName: 'subscription-plan', pluralName: 'subscription-plans', displayName: '订阅档位' },
   options: { draftAndPublish: false },
   attributes: {
@@ -17,4 +15,4 @@ const PlanSchema: Schema = {
     orders          : { type: 'relation', relation: 'oneToMany', target: 'api::subscription-order.subscription-order', mappedBy: 'plan' },
   },
 };
-export default PlanSchema; 
+module.exports = PlanSchema; 

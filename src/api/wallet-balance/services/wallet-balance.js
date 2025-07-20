@@ -1,18 +1,18 @@
-import { factories } from '@strapi/strapi';
-import { Decimal } from 'decimal.js';
+const { factories } = require('@strapi/strapi');
+const { Decimal } = require('decimal.js');
 
-export default factories.createCoreService('api::wallet-balance.wallet-balance', ({ strapi }) => ({
+module.exports = factories.createCoreService('api::wallet-balance.wallet-balance', ({ strapi }) => ({
   /** +金额 */
-  async add(userId: number, delta: string | number, meta = {}) {
+  async add(userId, delta, meta = {}) {
     return this._inc(userId, delta, meta, false);
   },
   /** -金额（不足则抛错） */
-  async deduct(userId: number, delta: string | number, meta = {}) {
+  async deduct(userId, delta, meta = {}) {
     return this._inc(userId, delta, meta, true);
   },
 
   /* 内部 */
-  async _inc(userId: number, delta: string | number, meta, isDeduct: boolean) {
+  async _inc(userId, delta, meta, isDeduct) {
     const bal = await strapi.db.query('api::wallet-balance.wallet-balance').findOne({ where: { user: userId } })
              ?? await strapi.entityService.create('api::wallet-balance.wallet-balance', { data: { user: userId } });
 

@@ -1,6 +1,4 @@
-import type { Schema } from '@strapi/strapi';
-
-const OrderSchema: Schema = {
+const OrderSchema = {
   info: { singularName: 'subscription-order', pluralName: 'subscription-orders', displayName: '认购订单' },
   options: { draftAndPublish: false },
   attributes: {
@@ -16,4 +14,4 @@ const OrderSchema: Schema = {
     referralReward: { type: 'relation', relation: 'oneToOne',  target: 'api::referral-reward.referral-reward' },
   },
 };
-export default OrderSchema; 
+module.exports = OrderSchema; 

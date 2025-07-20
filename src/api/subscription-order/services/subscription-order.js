@@ -1,9 +1,9 @@
-import { factories } from '@strapi/strapi';
-import { Decimal } from 'decimal.js';
+const { factories } = require('@strapi/strapi');
+const { Decimal } = require('decimal.js');
 
-export default factories.createCoreService('api::subscription-order.subscription-order', ({ strapi }) => ({
+module.exports = factories.createCoreService('api::subscription-order.subscription-order', ({ strapi }) => ({
   // ➊ 创建订单（含购买次数 / 解锁规则校验）
-  async createWithChecks(userId: number, planId: number) {
+  async createWithChecks(userId, planId) {
     const plan = await strapi.entityService.findOne('api::subscription-plan.subscription-plan', planId);
     if (!plan?.enabled) throw new Error('PLAN_DISABLED');
 
@@ -34,7 +34,7 @@ export default factories.createCoreService('api::subscription-order.subscription
   },
 
   // ➋ 赎回（订单到期／手动触发），计算分润
-  async redeem(orderId: number) {
+  async redeem(orderId) {
     const order = await strapi.entityService.findOne('api::subscription-order.subscription-order', orderId, { populate: { user: true, plan: true } });
     if (order.orderState === 'finished') return order;
 

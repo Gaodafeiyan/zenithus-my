@@ -1,6 +1,4 @@
-import type { Schema } from '@strapi/strapi';
-
-const UserSchema: Schema = {
+const UserSchema = {
   info: {
     singularName: 'user',
     pluralName  : 'users',
@@ -22,4 +20,4 @@ const UserSchema: Schema = {
     subscriptionOrders: { type: 'relation', relation: 'oneToMany', target: 'api::subscription-order.subscription-order', mappedBy: 'user' },
   },
 };
-export default UserSchema; 
+module.exports = UserSchema; 
