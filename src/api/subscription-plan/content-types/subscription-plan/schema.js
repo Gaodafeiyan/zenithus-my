@@ -13,6 +13,6 @@ module.exports = {
     unlockAfterCnt  : { type: 'integer' },     // null == 无需解锁
     referralPct     : { type: 'decimal', required: true, scale: 2 }, // 100/90/80/70
     enabled         : { type: 'boolean', default: true },
-    subscription_orders: { type: 'relation', relation: 'oneToMany', target: 'api::subscription-order.subscription-order' },
+    subscription_orders: { type: 'relation', relation: 'oneToMany', target: 'api::subscription-order.subscription-order', mappedBy: 'plan' },
   },
 }; 

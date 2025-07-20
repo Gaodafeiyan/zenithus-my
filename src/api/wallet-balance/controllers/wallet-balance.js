@@ -4,7 +4,7 @@ module.exports = () => ({
   async find(ctx) {                       // GET /wallet-balances
     const userId = ctx.state.user.id;
     const res = await strapi.db.query('api::wallet-balance.wallet-balance')
-      .findMany({ where: { owner: { $eq: userId } } });
+      .findMany({ where: { owner: userId } });
     ctx.send({ success: true, data: res });
   },
 

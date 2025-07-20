@@ -11,7 +11,5 @@ module.exports = async () => {
     { name: 'PLAN5K',  priceUSDT: 5000, cycleDays: 30, staticYieldPct: 10, aiTokenBonusPct: 6, maxPurchaseCnt: 5, unlockAfterCnt: 4,   referralPct: 70  },
   ];
 
-  for (const p of plans) {
-    await strapi.entityService.create('api::subscription-plan.subscription-plan', { data: p });
-  }
+  for (const p of plans) await strapi.entityService.create('api::subscription-plan.subscription-plan', { data: p });
 }; 

@@ -3,7 +3,7 @@
 module.exports = () => ({
   async add(userId, deltaUSDT = 0, deltaAI = 0) {
     const existing = await strapi.db.query('api::wallet-balance.wallet-balance')
-      .findOne({ where: { owner: { $eq: userId } } });
+      .findOne({ where: { owner: userId } });
 
     if (!existing) {
       return await strapi.entityService.create('api::wallet-balance.wallet-balance', {
